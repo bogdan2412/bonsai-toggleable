@@ -1,0 +1,6 @@
+(library
+ (name bonsai_toggleable)
+ (public_name bonsai-toggleable)
+ (libraries bonsai core)
+ (preprocess
+  (pps ppx_jane)))

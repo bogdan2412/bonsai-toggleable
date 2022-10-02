@@ -1,0 +1,15 @@
+opam-version: "2.0"
+name: "bonsai-toggleable"
+synopsis: "Bonsai library for building computations that toggle between two states."
+maintainer: "Bogdan Tataroiu <b.tataroiu@gmail.com>"
+authors: [ "Bogdan Tataroiu <b.tataroiu@gmail.com>" ]
+depends: [
+  "bonsai"
+  "core"
+  "dune" {build}
+  "ppx_jane" {build}
+  "ocaml" {build}
+]
+build: [
+  ["dune" "build" "-p" name "-j" jobs]
+]
