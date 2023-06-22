@@ -6,8 +6,6 @@ module State = struct
     | Untoggled
     | Toggled
   [@@deriving compare, sexp]
-
-  let equal = [%compare.equal: t]
 end
 
 module T = struct
@@ -68,16 +66,18 @@ end
 let state_machine =
   let%map.Bonsai.Computation value, inject =
     Bonsai.state_machine0
-      (module State)
-      (module Action)
+      ~sexp_of_model:[%sexp_of: State.t]
+      ~sexp_of_action:[%sexp_of: Action.t]
+      ~equal:[%compare.equal: State.t]
       ~default_model:Untoggled
-      ~apply_action:(fun ~inject:_ ~schedule_event:_ state action ->
+      ~apply_action:(fun (_ : Action.t Bonsai.Apply_action_context.t) state action ->
         match action with
         | Toggle ->
           (match state with
            | Untoggled -> Toggled
            | Toggled -> Untoggled)
         | Set_state state -> state)
+      ()
   in
   { value
   ; toggle = (fun () -> inject Toggle)
