@@ -1,2 +1,2 @@
-open! Core
-include Int.Replace_polymorphic_compare
+include Core.Int.Replace_polymorphic_compare
+module Bonsai = Bonsai.Proc
