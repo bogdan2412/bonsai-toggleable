@@ -65,7 +65,7 @@ end
 
 let state_machine =
   let%map.Bonsai.Computation value, inject =
-    Bonsai.state_machine0
+    Bonsai.state_machine
       ~sexp_of_model:[%sexp_of: State.t]
       ~sexp_of_action:[%sexp_of: Action.t]
       ~equal:[%compare.equal: State.t]
