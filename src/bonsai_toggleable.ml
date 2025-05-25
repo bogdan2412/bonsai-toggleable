@@ -73,12 +73,12 @@ let state_machine =
       ~apply_action:
         (fun
           (_ : (Action.t, unit) Bonsai.Apply_action_context.t) state action ->
-          match action with
-          | Toggle ->
-            (match state with
-             | Untoggled -> Toggled
-             | Toggled -> Untoggled)
-          | Set_state state -> state)
+        match action with
+        | Toggle ->
+          (match state with
+           | Untoggled -> Toggled
+           | Toggled -> Untoggled)
+        | Set_state state -> state)
       ()
   in
   { value
